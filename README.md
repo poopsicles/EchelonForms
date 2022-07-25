@@ -54,17 +54,21 @@ On close, all of the keys are discarded from memory so that the passpwrd will be
 
 ## Screenshots
 
-![Homepage](images/home.png)
-The homepage viewed when logged in.
+| ![Homepage](images/home.png) |
+|:--:|
+| *The homepage viewed when logged in* |
 
-![Logging in](images/login.png)
-The login prompt
+| ![Logging in](images/login.png) |
+|:--:|
+| *The login prompt* |
 
-![Taking a note](images/note.png)
-A note as seen in the application
+| ![Taking a note](images/note.png) |
+|:--:|
+| *A note as seen in the application* |
 
-![Encrypted data](images/sql.png)
-The note as stored in the database
+| ![Encrypted data](images/sql.png) |
+|:--:|
+| *The note as stored in the database* |
 
 ## Building from source
 
