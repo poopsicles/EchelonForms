@@ -15,19 +15,23 @@ namespace Echelon
         int UID;
         byte[] PrivateKey;
         List<int> NIDs;
-        Form MainWindow;
+        Form ParentContainer;
 
         public AllNotes(int UID, byte[] PrivateKey, Form Mainwindow) 
         {
-            InitializeComponent();
             this.UID = UID;
             this.PrivateKey = PrivateKey;
-            this.MainWindow = Mainwindow;
+            this.ParentContainer = Mainwindow;
             NIDs = new List<int>();
+            
+            InitializeComponent();
         }
 
         private void AllNotes_Load(object sender, EventArgs e)
         {
+            // get the total number of notes for the header
+            // and the note titles themselves to the grid and the corresponding IDs to a list
+
             using (var db = new Models.DatabaseContext())
             {
                 TotalLabel.Text = $"{db.Notes.Where(c => c.UserID == UID).Count()} in total";
@@ -46,30 +50,34 @@ namespace Echelon
 
         private void HomeLabel_Click(object sender, EventArgs e)
         {
-            MainWindow.Controls.Clear();
-            MainWindow.Controls.Add(new Home(MainWindow, UID, PrivateKey));
+            // go home
+
+            ParentContainer.Controls.Clear();
+            ParentContainer.Controls.Add(new Home(ParentContainer, UID, PrivateKey));
         }
 
         private void NotesGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var noteID = NIDs.ElementAt(NotesGridView.CurrentCell.RowIndex);
-            var noteContents = Services.Database.GetNoteContents(noteID, PrivateKey);
-            string fileContents = $"## {noteContents[0]}\n\n{noteContents[1]}\n\nLast modified: {noteContents[2]}";
 
-            if (NotesGridView.CurrentCell.ColumnIndex.Equals(2)) 
+            var noteID = NIDs.ElementAt(NotesGridView.CurrentCell.RowIndex);
+            
+            if (NotesGridView.CurrentCell.ColumnIndex.Equals(2)) // export button
             {
-                // get the row index, match the NID, export
+                // get the contents and export
+
+                var noteContents = Services.Database.GetNoteContents(noteID, PrivateKey);
+                string fileContents = $"# {noteContents[0]}\n\n{noteContents[1]}\n\n*Last modified: {noteContents[2]}*";
 
                 Stream myStream;
-                SaveFileDialog dialog1 = new SaveFileDialog();
+                SaveFileDialog dialogBox = new SaveFileDialog();
 
-                dialog1.Filter = "Markdown files (*.md)|*.md|All files (*.*)|*.*";
-                dialog1.FilterIndex = 0;
-                dialog1.RestoreDirectory = true;
+                dialogBox.Filter = "Markdown files (*.md)|*.md|All files (*.*)|*.*";
+                dialogBox.FilterIndex = 0;
+                dialogBox.RestoreDirectory = true;
 
-                if (dialog1.ShowDialog() == DialogResult.OK)
+                if (dialogBox.ShowDialog() == DialogResult.OK)
                 {
-                    if ((myStream = dialog1.OpenFile()) != null)
+                    if ((myStream = dialogBox.OpenFile()) != null)
                     {
                         using (StreamWriter streamwriter = new StreamWriter(myStream))
                         {
@@ -81,26 +89,27 @@ namespace Echelon
                 }
 
                 NotesGridView.CurrentCell.Selected = false;
-            } else if (NotesGridView.CurrentCell.ColumnIndex.Equals(3)) {
+            } else if (NotesGridView.CurrentCell.ColumnIndex.Equals(3)) { // delete button
                 // get the NID, delete, reload
 
                 Services.Database.DropNote(noteID);
 
                 if  (NIDs.Count() - 1 == 0)
                 {
-                    // exhausted all notes
-                    MainWindow.Controls.Clear();
-                    MainWindow.Controls.Add(new Home(MainWindow, UID, PrivateKey));
+                    // exhausted all notes, back to home
+                    ParentContainer.Controls.Clear();
+                    ParentContainer.Controls.Add(new Home(ParentContainer, UID, PrivateKey));
                 } else
                 {
-                    MainWindow.Controls.Clear();
-                    MainWindow.Controls.Add(new AllNotes(UID, PrivateKey, MainWindow));
+                    ParentContainer.Controls.Clear();
+                    ParentContainer.Controls.Add(new AllNotes(UID, PrivateKey, ParentContainer));
                 }
-            } else 
+            } else // title button
             {
                 // get the row index, match the NID, open
-                MainWindow.Controls.Clear();
-                MainWindow.Controls.Add(new OpenNote(UID, noteID, PrivateKey, MainWindow));
+
+                ParentContainer.Controls.Clear();
+                ParentContainer.Controls.Add(new OpenNote(UID, noteID, PrivateKey, ParentContainer));
             }
         }
     }

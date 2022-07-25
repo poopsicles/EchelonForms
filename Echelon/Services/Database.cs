@@ -37,6 +37,7 @@ internal class Database
     {
         // Takes a UserID and creates a new note
         // returns: the ID of the newly-created note
+
         var NoteID = 0;
 
         using (var db = new DatabaseContext())

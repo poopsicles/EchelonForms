@@ -15,22 +15,24 @@ namespace Echelon
         int UID;
         int NID;
         byte[] PrivateKey;
-        Form MainWindow;
+        Form ParentContainer;
         string[] note_contents;
 
         public OpenNote(int UID, int NID, byte[] PrivateKey, Form MainWindow)
         {
-            InitializeComponent();
             this.UID = UID;
             this.NID = NID;
             this.PrivateKey = PrivateKey;
-            this.MainWindow = MainWindow;
+            this.ParentContainer = MainWindow;
+
+            InitializeComponent();
         }
 
         private void OpenNote_Load(object sender, EventArgs e)
         {
             note_contents = Services.Database.GetNoteContents(NID, PrivateKey);
 
+            // if it's empty don't overwrite the placeholder text
             if (note_contents[0] != "" || note_contents[1] != "")
             {
                 TitleTextbox.Text = note_contents[0];
@@ -38,30 +40,7 @@ namespace Echelon
             }
         }
 
-        private void SaveNote()
-        {
-            string newTitle = String.IsNullOrEmpty(TitleTextbox.Text) ? "No title..." : TitleTextbox.Text;
-            string newBody = String.IsNullOrEmpty(BodyTextbox.Text) ? "No body..." : BodyTextbox.Text;
-
-            Services.Database.UpdateNote(NID, PrivateKey, newTitle, newBody);
-        }
-
-        private void SaveLabel_Click(object sender, EventArgs e)
-        {
-            SaveNote();
-
-            MainWindow.Controls.Clear();
-            MainWindow.Controls.Add(new OpenNote(UID, NID, PrivateKey, MainWindow));
-        }
-
-        private void HomeLabel_Click(object sender, EventArgs e)
-        {
-            SaveNote();
-
-            MainWindow.Controls.Clear();
-            MainWindow.Controls.Add(new Home(MainWindow, UID, PrivateKey));
-        }
-
+        // on text change - update saved status icon
         private void BodyTextbox_KeyPress(object sender, KeyPressEventArgs e)
         {
             SaveLabel.Text = "☁️!";
@@ -72,16 +51,26 @@ namespace Echelon
             SaveLabel.Text = "☁️!";
         }
 
-        private void OpenNote_KeyDown(object sender, KeyEventArgs e)
+        private void SaveLabel_Click(object sender, EventArgs e)
+        {
+            // save and refresh
+            MoveToNote();
+        }
+
+        private void HomeLabel_Click(object sender, EventArgs e)
+        {
+            // save and go back
+            MoveToHome();
+        }
+
+        // Ctrl + S handlers
+        private void OpenNote_KeyDown(object sender, KeyEventArgs e) 
         {
             if (e.Control)
             {
                 if (e.KeyCode == Keys.S)
                 {
-                    SaveNote();
-
-                    MainWindow.Controls.Clear();
-                    MainWindow.Controls.Add(new OpenNote(UID, NID, PrivateKey, MainWindow));
+                    MoveToNote();
                 }
             }
         }
@@ -92,10 +81,7 @@ namespace Echelon
             {
                 if (e.KeyCode == Keys.S)
                 {
-                    SaveNote();
-
-                    MainWindow.Controls.Clear();
-                    MainWindow.Controls.Add(new OpenNote(UID, NID, PrivateKey, MainWindow));
+                    MoveToNote();
                 }
             }
         }
@@ -106,12 +92,34 @@ namespace Echelon
             {
                 if (e.KeyCode == Keys.S)
                 {
-                    SaveNote();
-
-                    MainWindow.Controls.Clear();
-                    MainWindow.Controls.Add(new OpenNote(UID, NID, PrivateKey, MainWindow));
+                    MoveToNote();
                 }
             }
+        }
+
+        private void SaveNote()
+        {
+            // if it's empty place dummy text
+            string newTitle = String.IsNullOrEmpty(TitleTextbox.Text) ? "No Title" : TitleTextbox.Text;
+            string newBody = String.IsNullOrEmpty(BodyTextbox.Text) ? "No Body..." : BodyTextbox.Text;
+
+            Services.Database.UpdateNote(NID, PrivateKey, newTitle, newBody);
+        }
+
+        private void MoveToNote()
+        {
+            SaveNote();
+
+            ParentContainer.Controls.Clear();
+            ParentContainer.Controls.Add(new OpenNote(UID, NID, PrivateKey, ParentContainer));
+        }
+
+        private void MoveToHome()
+        {
+            SaveNote();
+
+            ParentContainer.Controls.Clear();
+            ParentContainer.Controls.Add(new Home(ParentContainer, UID, PrivateKey));
         }
     }
 }

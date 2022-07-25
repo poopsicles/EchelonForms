@@ -47,7 +47,7 @@
             // 
             this.GreetingLabel.AutoSize = true;
             this.GreetingLabel.Font = new System.Drawing.Font("SF Pro Display", 24.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.GreetingLabel.Location = new System.Drawing.Point(56, 66);
+            this.GreetingLabel.Location = new System.Drawing.Point(66, 71);
             this.GreetingLabel.Name = "GreetingLabel";
             this.GreetingLabel.Size = new System.Drawing.Size(156, 39);
             this.GreetingLabel.TabIndex = 4;
@@ -59,7 +59,7 @@
             this.TotalLabel.AutoSize = true;
             this.TotalLabel.Font = new System.Drawing.Font("SF Pro Display", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TotalLabel.ForeColor = System.Drawing.Color.DimGray;
-            this.TotalLabel.Location = new System.Drawing.Point(204, 78);
+            this.TotalLabel.Location = new System.Drawing.Point(214, 83);
             this.TotalLabel.Name = "TotalLabel";
             this.TotalLabel.Size = new System.Drawing.Size(119, 24);
             this.TotalLabel.TabIndex = 5;
@@ -133,11 +133,11 @@
             // 
             this.HomeLabel.AutoSize = true;
             this.HomeLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.HomeLabel.Font = new System.Drawing.Font("SF Pro Display", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.HomeLabel.Font = new System.Drawing.Font("SF Pro Display", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.HomeLabel.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.HomeLabel.Location = new System.Drawing.Point(31, 28);
+            this.HomeLabel.Location = new System.Drawing.Point(40, 40);
             this.HomeLabel.Name = "HomeLabel";
-            this.HomeLabel.Size = new System.Drawing.Size(29, 24);
+            this.HomeLabel.Size = new System.Drawing.Size(28, 23);
             this.HomeLabel.TabIndex = 8;
             this.HomeLabel.Text = "←";
             this.HomeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

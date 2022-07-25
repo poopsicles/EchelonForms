@@ -94,11 +94,11 @@
             // 
             this.BackLabel.AutoSize = true;
             this.BackLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BackLabel.Font = new System.Drawing.Font("SF Pro Display", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BackLabel.Font = new System.Drawing.Font("SF Pro Display", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.BackLabel.ForeColor = System.Drawing.Color.Red;
-            this.BackLabel.Location = new System.Drawing.Point(39, 40);
+            this.BackLabel.Location = new System.Drawing.Point(40, 40);
             this.BackLabel.Name = "BackLabel";
-            this.BackLabel.Size = new System.Drawing.Size(29, 24);
+            this.BackLabel.Size = new System.Drawing.Size(28, 23);
             this.BackLabel.TabIndex = 7;
             this.BackLabel.Text = "←";
             this.BackLabel.Click += new System.EventHandler(this.BackLabel_Click);

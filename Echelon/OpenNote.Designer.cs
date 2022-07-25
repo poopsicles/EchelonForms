@@ -77,11 +77,11 @@
             // 
             this.HomeLabel.AutoSize = true;
             this.HomeLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.HomeLabel.Font = new System.Drawing.Font("SF Pro Display", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.HomeLabel.Font = new System.Drawing.Font("SF Pro Display", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.HomeLabel.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.HomeLabel.Location = new System.Drawing.Point(33, 29);
+            this.HomeLabel.Location = new System.Drawing.Point(40, 40);
             this.HomeLabel.Name = "HomeLabel";
-            this.HomeLabel.Size = new System.Drawing.Size(29, 24);
+            this.HomeLabel.Size = new System.Drawing.Size(28, 23);
             this.HomeLabel.TabIndex = 7;
             this.HomeLabel.Text = "←";
             this.HomeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -93,7 +93,7 @@
             this.SaveLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SaveLabel.Font = new System.Drawing.Font("SF Pro Display", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.SaveLabel.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.SaveLabel.Location = new System.Drawing.Point(727, 29);
+            this.SaveLabel.Location = new System.Drawing.Point(727, 39);
             this.SaveLabel.Name = "SaveLabel";
             this.SaveLabel.Size = new System.Drawing.Size(36, 24);
             this.SaveLabel.TabIndex = 8;

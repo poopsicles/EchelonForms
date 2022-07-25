@@ -17,17 +17,19 @@ namespace Echelon
         string name;
         byte[] StoredHash;
         byte[] UnlockedPrivateKey;
-        Form MainWindow;
+        Form ParentContainer;
 
 
         public Login(Form MainWindow)
         {
-            this.MainWindow = MainWindow;
+            this.ParentContainer = MainWindow;
+
             InitializeComponent();
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
+            // for now there's only one user, so get the first name
             using (var db = new Models.DatabaseContext())
             {
                 UID = db.Users.First().UserID;
@@ -37,6 +39,29 @@ namespace Echelon
 
             NameLabel.Text = $"Welcome back, {name}";
             ForgotLabel.Text = $"Forgot password or not {name}?";
+        }
+
+        private void NextLabel_Click(object sender, EventArgs e)
+        {
+            GoToHome();
+        }
+
+        private void ForgotLabel_Click(object sender, EventArgs e)
+        {
+            // go to data deletion page
+            GoToReset();
+        }
+
+        private void inputTextbox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+
+                // validate
+                GoToHome();
+            }
         }
 
         public void GoToHome()
@@ -57,8 +82,8 @@ namespace Echelon
                         UnlockedPrivateKey = Crypto.GetPrivateKey(inputTextbox.Text, db.Users.First(c => c.UserID == UID).ProtectedPrivateKey);
                     }
 
-                    MainWindow.Controls.Clear();
-                    MainWindow.Controls.Add(new Home(MainWindow, UID, UnlockedPrivateKey));
+                    ParentContainer.Controls.Clear();
+                    ParentContainer.Controls.Add(new Home(ParentContainer, UID, UnlockedPrivateKey));
                 }
                 else
                 {
@@ -69,27 +94,10 @@ namespace Echelon
             }
         }
 
-        private void NextLabel_Click(object sender, EventArgs e)
+        private void GoToReset()
         {
-            GoToHome();
-        }
-
-        private void ForgotLabel_Click(object sender, EventArgs e)
-        {
-            // go to data deletion page
-            MainWindow.Controls.Clear();
-            MainWindow.Controls.Add(new Reset(MainWindow));
-        }
-
-        private void inputTextbox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.SuppressKeyPress = true;
-                e.Handled = true;
-                // validate
-                GoToHome();
-            }
+            ParentContainer.Controls.Clear();
+            ParentContainer.Controls.Add(new Reset(ParentContainer));
         }
     }
 }

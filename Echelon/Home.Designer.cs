@@ -94,7 +94,7 @@
             this.LockLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.LockLabel.Font = new System.Drawing.Font("SF Pro Display", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.LockLabel.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.LockLabel.Location = new System.Drawing.Point(27, 27);
+            this.LockLabel.Location = new System.Drawing.Point(30, 36);
             this.LockLabel.Name = "LockLabel";
             this.LockLabel.Size = new System.Drawing.Size(47, 32);
             this.LockLabel.TabIndex = 6;

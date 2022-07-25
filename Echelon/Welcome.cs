@@ -12,23 +12,18 @@ namespace Echelon
 {
     public partial class Welcome : UserControl
     {
-        Form MainWindow;
-
-        public void MoveToOnboarding()
-        {
-            TickTimer.Enabled = false;
-            MainWindow.Controls.Clear();
-            MainWindow.Controls.Add(new Onboarding(MainWindow));
-        }
+        Form ParentContainer;
 
         public Welcome(Form MainWindow)
         {
-            this.MainWindow = MainWindow;
+            this.ParentContainer = MainWindow;
             InitializeComponent();
         }
 
         private void TickTimer_Tick(object sender, EventArgs e)
         {
+        // primitive animation things
+
             switch (GreetingLabel.Text)
             {
                 case "simple notes.":
@@ -55,12 +50,24 @@ namespace Echelon
 
         private void Welcome_KeyDown(object sender, KeyEventArgs e)
         {
+        // handles the user pressing "Enter" instead of clicking the button
+
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true;
                 e.Handled = true;
                 MoveToOnboarding();
             }
+        }
+
+        public void MoveToOnboarding()
+        {
+            // clears the parent MainWindow (removing itself), makes a new Onboarding control
+            // and passes Mainwindow *into* Onboarding, allowing it to be controlled by the new control
+
+            TickTimer.Enabled = false;
+            ParentContainer.Controls.Clear();
+            ParentContainer.Controls.Add(new Onboarding(ParentContainer));
         }
     }
 }

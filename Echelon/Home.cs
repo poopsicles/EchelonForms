@@ -12,33 +12,27 @@ namespace Echelon
 {
     public partial class Home : UserControl
     {
-        Form MainWindow;
+        Form ParentContainer;
         int UID;
-        string name;
+        string name = "";
         byte[] PrivateKey;
 
         public Home(Form MainWindow, int UID, byte[] PrivateKey)
         {
-            this.MainWindow = MainWindow;
+            this.ParentContainer = MainWindow;
             this.PrivateKey = PrivateKey;
             this.UID = UID;
 
             InitializeComponent();
         }
 
-        private void GoToLogin()
-        {
-            BackgroundLockTimer.Enabled = false;
-            ManualLockTimer.Enabled = false;
-
-            MainWindow.Controls.Clear();
-            MainWindow.Controls.Add(new Login(MainWindow));
-        }
-
         private void Home_Load(object sender, EventArgs e)
         {
+        // check the time of day, and adjust the greeting accordingly
+
             using (var db = new Models.DatabaseContext())
             {
+                // for now, only one user is allowed, so simply grab the first name from the database
                 name = db.Users.First(c => c.UserID == UID).Name;
             }
 
@@ -59,7 +53,7 @@ namespace Echelon
                 GreetingLabel.Text = "What are we creating tonight?";
             }
 
-
+            // are there already notes associated with that user?
             using (var db = new Models.DatabaseContext())
             {
                 if (db.Notes.Where(c => c.UserID == UID).Count() == 0)
@@ -67,12 +61,6 @@ namespace Echelon
                     AllNotesButton.Enabled = false;
                 }
             }
-        }
-
-        private void LockLabel_Click(object sender, EventArgs e)
-        {
-            LockLabel.Text = "🔐";
-            ManualLockTimer.Enabled = true;
         }
 
         private void BackgroundLockTimer_Tick(object sender, EventArgs e)
@@ -85,26 +73,51 @@ namespace Echelon
             GoToLogin();
         }
 
+        private void LockLabel_Click(object sender, EventArgs e)
+        {
+            // changes button text and locks after 0.8s to allow the animation to show
+
+            LockLabel.Text = "🔐";
+            ManualLockTimer.Enabled = true;
+        }
+
         private void NewNoteButton_Click(object sender, EventArgs e)
         {
-            // create a new note and open
+            GoToNewNote();
+        }
+
+        private void AllNotesButton_Click(object sender, EventArgs e)
+        {
+            GoToAllNotes();
+        }
+
+        private void GoToLogin()
+        {
+            BackgroundLockTimer.Enabled = false;
+            ManualLockTimer.Enabled = false;
+
+            ParentContainer.Controls.Clear();
+            ParentContainer.Controls.Add(new Login(ParentContainer));
+        }
+
+        private void GoToNewNote()
+        {
             var newNoteID = Services.Database.AddNote(UID);
 
             BackgroundLockTimer.Enabled = false;
             ManualLockTimer.Enabled = false;
 
-            MainWindow.Controls.Clear();
-            MainWindow.Controls.Add(new OpenNote(UID, newNoteID, PrivateKey, MainWindow));
+            ParentContainer.Controls.Clear();
+            ParentContainer.Controls.Add(new OpenNote(UID, newNoteID, PrivateKey, ParentContainer));
         }
 
-        private void AllNotesButton_Click(object sender, EventArgs e)
+        private void GoToAllNotes()
         {
-            // go to all notes page
             BackgroundLockTimer.Enabled = false;
             ManualLockTimer.Enabled = false;
 
-            MainWindow.Controls.Clear();
-            MainWindow.Controls.Add(new AllNotes(UID, PrivateKey, MainWindow));
+            ParentContainer.Controls.Clear();
+            ParentContainer.Controls.Add(new AllNotes(UID, PrivateKey, ParentContainer));
         }
     }
 }
