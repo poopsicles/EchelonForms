@@ -6,7 +6,16 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Version>0.1.0</Version>
+    <Authors>poopsicles</Authors>
+    <Description>Simple, fast &amp; secure notes</Description>
+    <RepositoryUrl>https://github.com/poopsicles/EchelonForms</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/poopsicles/EchelonForms</PackageProjectUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="https:\github.com\poopsicles\EchelonForms\blob\main\README.md" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
