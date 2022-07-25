@@ -28,7 +28,7 @@ I ended up getting 14 out of 15, because *no one* gets to get full marks haha.
 
 ## Security overview
 
-You should read up a bit on [assymetric crytography](https://en.wikipedia.org/wiki/Public-key_cryptography) to understand what's really happening here.
+You should read up a bit on [asymmetric crytography](https://en.wikipedia.org/wiki/Public-key_cryptography) to understand what's really happening here.
 
 A nicer, less technical intro. can also be found [here](https://www.techtarget.com/searchsecurity/definition/asymmetric-cryptography).
 
