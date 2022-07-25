@@ -8,7 +8,7 @@ So, our uni "project" for one of our programming courses for the semester (I put
 2. It was made with C#, as that was the language of the ~~week~~ semester
 3. It connected to a database (or at least, looked like it connected to a database...you could hard-code but that's just stressful)
 
-So, I thought I'd be all fancy and use [AvaloniaUI](https://avaloniaui.net/) because of cross-platoform-ness (and not because one of my friends was using [Xamarin.Mac](https://visualstudio.microsoft.com/vs/mac/xamarin/)).
+So, I thought I'd be all fancy and use [AvaloniaUI](https://avaloniaui.net/) because of cross-platform-ness (and not because one of my friends was using [Xamarin.Mac](https://visualstudio.microsoft.com/vs/mac/xamarin/)).
 
 Anyways, that dream went in the mud very fast.
 And then I turned to good ol' WinForms to save me.
