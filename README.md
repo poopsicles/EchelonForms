@@ -24,7 +24,7 @@ I ended up getting 14 out of 15, because *no one* gets to get full marks haha.
 
 - Security - by default, all notes are protected with state-of-the-art encryption techniques
 - Minimalism - designed to allow you to focus on the one thing that matters, taking down your notes
-- Exporting - if you need to allow your notes to be shared, they can be exported in Markdown, which can be opened in any text edito
+- Exporting - if you need to allow your notes to be shared, they can be exported in Markdown, which can be opened in any text editor
 
 ## Security overview
 
