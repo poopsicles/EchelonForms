@@ -50,7 +50,7 @@ The application implements its security in the following ways:
   2. The contents of the note are then decrypted with `N±` and shown to the user
   3. Once changes are made to the contents, they are again encrypted with `N±` and stored in the database
 
-On close, all of the keys are discarded from memory so that the passpwrd will be needed to unlock everything again.
+On close, all of the keys are discarded from memory so that the password will be needed to unlock everything again.
 
 ## Screenshots
 
