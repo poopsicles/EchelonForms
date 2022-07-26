@@ -24,7 +24,7 @@ I ended up getting 14 out of 15, because *no one* gets to get full marks haha.
 
 - Security - by default, all notes are protected with state-of-the-art encryption techniques
 - Minimalism - designed to allow you to focus on the one thing that matters, taking down your notes
-- Exporting - if you need to allow your notes to be shared, they can be exported in Markdown, which can be opened in any text editor
+- Exporting - if you need to allow your notes to be shared, they can be exported in Markdown, which can be opened in any text edito
 
 ## Security overview
 
@@ -50,7 +50,7 @@ The application implements its security in the following ways:
   2. The contents of the note are then decrypted with `N±` and shown to the user
   3. Once changes are made to the contents, they are again encrypted with `N±` and stored in the database
 
-On close, all of the keys are discarded from memory so that the password will be needed to unlock everything again.
+On close, all of the keys are discarded from memory so that the passpwrd will be needed to unlock everything again.
 
 ## Screenshots
 
@@ -69,6 +69,10 @@ On close, all of the keys are discarded from memory so that the password will be
 | ![Encrypted data](images/sql.png) |
 |:--:|
 | *The note as stored in the database* |
+
+## Downloading the application
+
+Simply get the latest release from [Releases](https://github.com/poopsicles/EchelonForms/releases)
 
 ## Building from source
 
