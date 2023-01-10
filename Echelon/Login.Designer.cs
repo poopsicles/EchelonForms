@@ -40,44 +40,46 @@
             // NameLabel
             // 
             this.NameLabel.AutoSize = true;
-            this.NameLabel.Font = new System.Drawing.Font("SF Pro Display", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.NameLabel.Location = new System.Drawing.Point(36, 68);
+            this.NameLabel.Font = new System.Drawing.Font("Inter Semi Bold", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.NameLabel.Location = new System.Drawing.Point(64, 52);
             this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(520, 57);
+            this.NameLabel.Size = new System.Drawing.Size(560, 58);
             this.NameLabel.TabIndex = 1;
             this.NameLabel.Text = "Welcome back, {name}";
             // 
             // QuestionLabel
             // 
             this.QuestionLabel.AutoSize = true;
-            this.QuestionLabel.Font = new System.Drawing.Font("SF Pro Display", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.QuestionLabel.Location = new System.Drawing.Point(37, 125);
+            this.QuestionLabel.Font = new System.Drawing.Font("Inter Semi Bold", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.QuestionLabel.Location = new System.Drawing.Point(65, 105);
             this.QuestionLabel.Name = "QuestionLabel";
-            this.QuestionLabel.Size = new System.Drawing.Size(510, 57);
+            this.QuestionLabel.Size = new System.Drawing.Size(536, 58);
             this.QuestionLabel.TabIndex = 2;
             this.QuestionLabel.Text = "What\'s the password?";
             // 
             // inputTextbox
             // 
             this.inputTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.inputTextbox.Font = new System.Drawing.Font("SF Pro Display", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.inputTextbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.inputTextbox.Location = new System.Drawing.Point(57, 211);
+            this.inputTextbox.Font = new System.Drawing.Font("Inter", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.inputTextbox.ForeColor = System.Drawing.Color.Black;
+            this.inputTextbox.Location = new System.Drawing.Point(74, 197);
             this.inputTextbox.MaxLength = 15;
             this.inputTextbox.Name = "inputTextbox";
-            this.inputTextbox.Size = new System.Drawing.Size(365, 40);
+            this.inputTextbox.Size = new System.Drawing.Size(345, 40);
             this.inputTextbox.TabIndex = 3;
             this.inputTextbox.UseSystemPasswordChar = true;
+            this.inputTextbox.Enter += new System.EventHandler(this.inputTextbox_Enter);
             this.inputTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputTextbox_KeyDown);
+            this.inputTextbox.Leave += new System.EventHandler(this.inputTextbox_Leave);
             // 
             // BorderLabel
             // 
             this.BorderLabel.AutoSize = true;
-            this.BorderLabel.Font = new System.Drawing.Font("SF Pro Display", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BorderLabel.Font = new System.Drawing.Font("Inter", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.BorderLabel.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.BorderLabel.Location = new System.Drawing.Point(39, 211);
+            this.BorderLabel.Location = new System.Drawing.Point(65, 193);
             this.BorderLabel.Name = "BorderLabel";
-            this.BorderLabel.Size = new System.Drawing.Size(431, 57);
+            this.BorderLabel.Size = new System.Drawing.Size(370, 58);
             this.BorderLabel.TabIndex = 4;
             this.BorderLabel.Text = "_______________";
             // 
@@ -85,23 +87,25 @@
             // 
             this.NextLabel.AutoSize = true;
             this.NextLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.NextLabel.Font = new System.Drawing.Font("SF Pro Display", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.NextLabel.Font = new System.Drawing.Font("Inter", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.NextLabel.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.NextLabel.Location = new System.Drawing.Point(466, 211);
+            this.NextLabel.Location = new System.Drawing.Point(441, 183);
             this.NextLabel.Name = "NextLabel";
-            this.NextLabel.Size = new System.Drawing.Size(70, 57);
+            this.NextLabel.Size = new System.Drawing.Size(76, 58);
             this.NextLabel.TabIndex = 5;
             this.NextLabel.Text = "→";
             this.NextLabel.Click += new System.EventHandler(this.NextLabel_Click);
+            this.NextLabel.MouseEnter += new System.EventHandler(this.NextLabel_MouseEnter);
+            this.NextLabel.MouseLeave += new System.EventHandler(this.NextLabel_MouseLeave);
             // 
             // ValidationLabel
             // 
             this.ValidationLabel.AutoSize = true;
-            this.ValidationLabel.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ValidationLabel.Font = new System.Drawing.Font("Inter", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ValidationLabel.ForeColor = System.Drawing.Color.Red;
-            this.ValidationLabel.Location = new System.Drawing.Point(57, 275);
+            this.ValidationLabel.Location = new System.Drawing.Point(73, 251);
             this.ValidationLabel.Name = "ValidationLabel";
-            this.ValidationLabel.Size = new System.Drawing.Size(116, 18);
+            this.ValidationLabel.Size = new System.Drawing.Size(121, 18);
             this.ValidationLabel.TabIndex = 6;
             this.ValidationLabel.Text = "Invalid password.";
             this.ValidationLabel.Visible = false;
@@ -109,15 +113,17 @@
             // ForgotLabel
             // 
             this.ForgotLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ForgotLabel.Font = new System.Drawing.Font("SF Pro Display", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ForgotLabel.Font = new System.Drawing.Font("Inter", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ForgotLabel.ForeColor = System.Drawing.Color.DimGray;
-            this.ForgotLabel.Location = new System.Drawing.Point(469, 340);
+            this.ForgotLabel.Location = new System.Drawing.Point(458, 307);
             this.ForgotLabel.Name = "ForgotLabel";
             this.ForgotLabel.Size = new System.Drawing.Size(267, 18);
             this.ForgotLabel.TabIndex = 7;
             this.ForgotLabel.Text = "Forgot password or not {name}?";
             this.ForgotLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.ForgotLabel.Click += new System.EventHandler(this.ForgotLabel_Click);
+            this.ForgotLabel.MouseEnter += new System.EventHandler(this.ForgotLabel_MouseEnter);
+            this.ForgotLabel.MouseLeave += new System.EventHandler(this.ForgotLabel_MouseLeave);
             // 
             // Login
             // 

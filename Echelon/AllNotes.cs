@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,13 +16,13 @@ namespace Echelon
         int UID;
         byte[] PrivateKey;
         List<int> NIDs;
-        Form ParentContainer;
+        MainWindow ParentContainer;
 
-        public AllNotes(int UID, byte[] PrivateKey, Form Mainwindow) 
+        public AllNotes(int UID, byte[] PrivateKey, MainWindow Parent) 
         {
             this.UID = UID;
             this.PrivateKey = PrivateKey;
-            this.ParentContainer = Mainwindow;
+            this.ParentContainer = Parent;
             NIDs = new List<int>();
             
             InitializeComponent();
@@ -29,6 +30,14 @@ namespace Echelon
 
         private void AllNotes_Load(object sender, EventArgs e)
         {
+            HomeLabel.Font = new Font(ParentContainer.interCollection.Families[0], 14.25F, FontStyle.Bold);
+            GreetingLabel.Font = new Font(ParentContainer.interCollection.Families[12], 24.75F, FontStyle.Regular);
+            TotalLabel.Font = new Font(ParentContainer.interCollection.Families[0], 15F, FontStyle.Regular);
+            label1.Font = new Font(ParentContainer.interCollection.Families[8], 9.75F, FontStyle.Regular);
+            label2.Font = new Font(ParentContainer.interCollection.Families[8], 9.75F, FontStyle.Regular);
+            label3.Font = new Font(ParentContainer.interCollection.Families[8], 9.75F, FontStyle.Regular);
+            NotesGridView.Font = new Font(ParentContainer.interCollection.Families[0], 11.25F, FontStyle.Regular);
+
             // get the total number of notes for the header
             // and the note titles themselves to the grid and the corresponding IDs to a list
 
@@ -37,9 +46,10 @@ namespace Echelon
                 TotalLabel.Text = $"{db.Notes.Where(c => c.UserID == UID).Count()} in total";
 
                 foreach (var note in db.Notes.Where(c => c.UserID == UID).OrderBy(c => c.LastModified).Reverse()) {
-                    var title = Services.Crypto.DecryptString(Services.Crypto.DecryptBytes(PrivateKey, note.EncryptedKey), note.EncryptedTitle);       
-                    
-                    NotesGridView.Rows.Add(title, note.LastModified.ToString("f"), "Export 💾", "Delete ❌");
+                    var title = Services.Crypto.DecryptString(Services.Crypto.DecryptBytes(PrivateKey, note.EncryptedKey), note.EncryptedTitle);
+                    title = String.IsNullOrEmpty(title) ? "No title" : title;
+
+                    NotesGridView.Rows.Add(title, lastModified(note.NoteID), "Export 💾", "Delete ❌");
                     NIDs.Add(note.NoteID);
                 }
             }
@@ -108,8 +118,39 @@ namespace Echelon
             {
                 // get the row index, match the NID, open
 
-                ParentContainer.Controls.Clear();
-                ParentContainer.Controls.Add(new OpenNote(UID, noteID, PrivateKey, ParentContainer));
+               ParentContainer.Controls.Clear();
+               ParentContainer.Controls.Add(new OpenNote(UID, noteID, PrivateKey, ParentContainer));
+            }
+        }
+
+        private string lastModified(int NID)
+        {
+            var last_saved = Services.Database.GetNoteDateModified(NID);
+            var interval = DateTime.Now - last_saved;
+
+            if (interval <= new TimeSpan(0, 0, 5))
+            {
+                return "Just now";
+            }
+            else if (interval <= new TimeSpan(0, 2, 0))
+            {
+                return "A minute ago";
+            }
+            else if (interval <= new TimeSpan(0, 10, 0))
+            {
+                return "A few minutes ago";
+            }
+            else if (interval <= new TimeSpan(1, 0, 0))
+            {
+                return "Within the hour";
+            }
+            else if (interval <= new TimeSpan(1, 0, 0, 0))
+            {
+                return "Earlier today";
+            }
+            else
+            {
+                return last_saved.ToString();
             }
         }
     }

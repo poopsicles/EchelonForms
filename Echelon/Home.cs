@@ -12,14 +12,14 @@ namespace Echelon
 {
     public partial class Home : UserControl
     {
-        Form ParentContainer;
+        MainWindow ParentContainer;
         int UID;
         string name = "";
         byte[] PrivateKey;
 
-        public Home(Form MainWindow, int UID, byte[] PrivateKey)
+        public Home(MainWindow Parent, int UID, byte[] PrivateKey)
         {
-            this.ParentContainer = MainWindow;
+            this.ParentContainer = Parent;
             this.PrivateKey = PrivateKey;
             this.UID = UID;
 
@@ -28,7 +28,10 @@ namespace Echelon
 
         private void Home_Load(object sender, EventArgs e)
         {
-        // check the time of day, and adjust the greeting accordingly
+            NameLabel.Font = new Font(ParentContainer.interCollection.Families[12], 30F, FontStyle.Regular);
+            GreetingLabel.Font = new Font(ParentContainer.interCollection.Families[12], 30F, FontStyle.Regular);
+            NewNoteButton.Font = new Font(ParentContainer.interCollection.Families[0], 14.25F, FontStyle.Regular);
+            AllNotesButton.Font = new Font(ParentContainer.interCollection.Families[0], 14.25F, FontStyle.Regular);
 
             using (var db = new Models.DatabaseContext())
             {
@@ -36,6 +39,7 @@ namespace Echelon
                 name = db.Users.First(c => c.UserID == UID).Name;
             }
 
+            // check the time of day, and adjust the greeting accordingly
             TimeSpan now = DateTime.Now.TimeOfDay;
             TimeSpan morning = new TimeSpan(5, 0, 0);
             TimeSpan noon = new TimeSpan(12, 0, 0);
@@ -73,9 +77,20 @@ namespace Echelon
             GoToLogin();
         }
 
+        private void LockLabel_MouseEnter(object sender, EventArgs e)
+        {
+            LockLabel.ForeColor = Color.FromArgb(24, 120, 215);
+
+        }
+
+        private void LockLabel_MouseLeave(object sender, EventArgs e)
+        {
+            LockLabel.ForeColor = Color.FromArgb(30, 144, 255);
+        }
+
         private void LockLabel_Click(object sender, EventArgs e)
         {
-            // changes button text and locks after 0.8s to allow the animation to show
+            // changes button text and locks after 0.5s to allow the animation to show
 
             LockLabel.Text = "🔐";
             ManualLockTimer.Enabled = true;

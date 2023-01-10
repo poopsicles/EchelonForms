@@ -81,10 +81,23 @@ internal class Database
 
             noteContents[0] = title;
             noteContents[1] = body;
-            noteContents[2] = note.LastModified.ToString("f");
         }
 
         return noteContents;
+    }
+
+    public static DateTime GetNoteDateModified(int NoteID)
+    {
+        // takes a NoteID and returns the time last modified 
+        DateTime date;
+
+        using (var db = new DatabaseContext())
+        {
+            date = db.Notes.Where(c => c.NoteID == NoteID).First().LastModified;
+        }
+        //noteContents[2] = note.LastModified.ToString("f");
+
+        return date;
     }
 
     public static void UpdateNote(int NoteID, byte[] PrivateKey, string title, string body)

@@ -17,18 +17,23 @@ namespace Echelon
         string name;
         byte[] StoredHash;
         byte[] UnlockedPrivateKey;
-        Form ParentContainer;
+        MainWindow ParentContainer;
 
-
-        public Login(Form MainWindow)
+        public Login(MainWindow Parent)
         {
-            this.ParentContainer = MainWindow;
-
+            this.ParentContainer = Parent;
             InitializeComponent();
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
+            NameLabel.Font = new Font(ParentContainer.interCollection.Families[12], 36F, FontStyle.Regular);
+            QuestionLabel.Font = new Font(ParentContainer.interCollection.Families[12], 36F, FontStyle.Regular);
+            BorderLabel.Font = new Font(ParentContainer.interCollection.Families[0], 36F, FontStyle.Bold);
+            NextLabel.Font = new Font(ParentContainer.interCollection.Families[0], 36F, FontStyle.Bold);
+            ValidationLabel.Font = new Font(ParentContainer.interCollection.Families[0], 11.25F, FontStyle.Regular);
+            ForgotLabel.Font = new Font(ParentContainer.interCollection.Families[0], 11.25F, FontStyle.Regular);
+
             // for now there's only one user, so get the first name
             using (var db = new Models.DatabaseContext())
             {
@@ -62,6 +67,36 @@ namespace Echelon
                 // validate
                 GoToHome();
             }
+        }
+
+        private void NextLabel_MouseEnter(object sender, EventArgs e)
+        {
+            NextLabel.ForeColor = Color.FromArgb(24, 120, 215);
+        }
+
+        private void NextLabel_MouseLeave(object sender, EventArgs e)
+        {
+            NextLabel.ForeColor = Color.FromArgb(30, 144, 255);
+        }
+
+        private void inputTextbox_Enter(object sender, EventArgs e)
+        {
+            BorderLabel.ForeColor = Color.FromArgb(24, 120, 215);
+        }
+
+        private void inputTextbox_Leave(object sender, EventArgs e)
+        {
+            BorderLabel.ForeColor = Color.FromArgb(30, 144, 255);
+        }
+
+        private void ForgotLabel_MouseEnter(object sender, EventArgs e)
+        {
+            ForgotLabel.ForeColor = Color.FromArgb(125, 125, 125);
+        }
+
+        private void ForgotLabel_MouseLeave(object sender, EventArgs e)
+        {
+            ForgotLabel.ForeColor = Color.FromArgb(105, 105, 105);
         }
 
         public void GoToHome()

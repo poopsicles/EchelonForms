@@ -39,22 +39,23 @@
             // WelcomeLabel
             // 
             this.WelcomeLabel.AutoSize = true;
-            this.WelcomeLabel.Font = new System.Drawing.Font("SF Pro Display", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.WelcomeLabel.Location = new System.Drawing.Point(50, 100);
-            this.WelcomeLabel.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.WelcomeLabel.Font = new System.Drawing.Font("Inter Semi Bold", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.WelcomeLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.WelcomeLabel.Location = new System.Drawing.Point(54, 94);
+            this.WelcomeLabel.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.WelcomeLabel.Name = "WelcomeLabel";
-            this.WelcomeLabel.Size = new System.Drawing.Size(281, 57);
+            this.WelcomeLabel.Size = new System.Drawing.Size(299, 58);
             this.WelcomeLabel.TabIndex = 0;
             this.WelcomeLabel.Text = "Welcome to";
             // 
             // GreetingLabel
             // 
             this.GreetingLabel.AutoSize = true;
-            this.GreetingLabel.Font = new System.Drawing.Font("SF Pro Display", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.GreetingLabel.Location = new System.Drawing.Point(50, 157);
-            this.GreetingLabel.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.GreetingLabel.Font = new System.Drawing.Font("Inter Semi Bold", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.GreetingLabel.Location = new System.Drawing.Point(54, 150);
+            this.GreetingLabel.Margin = new System.Windows.Forms.Padding(9, 0, 9, 0);
             this.GreetingLabel.Name = "GreetingLabel";
-            this.GreetingLabel.Size = new System.Drawing.Size(315, 57);
+            this.GreetingLabel.Size = new System.Drawing.Size(333, 58);
             this.GreetingLabel.TabIndex = 1;
             this.GreetingLabel.Text = "simple notes.";
             // 
@@ -67,10 +68,10 @@
             // EmojiLabel
             // 
             this.EmojiLabel.AutoSize = true;
-            this.EmojiLabel.Font = new System.Drawing.Font("SF Pro Display", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.EmojiLabel.Location = new System.Drawing.Point(586, 110);
+            this.EmojiLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.EmojiLabel.Location = new System.Drawing.Point(582, 113);
             this.EmojiLabel.Name = "EmojiLabel";
-            this.EmojiLabel.Size = new System.Drawing.Size(165, 115);
+            this.EmojiLabel.Size = new System.Drawing.Size(154, 108);
             this.EmojiLabel.TabIndex = 2;
             this.EmojiLabel.Text = "👌";
             // 
@@ -78,28 +79,31 @@
             // 
             this.NextLabel.AutoSize = true;
             this.NextLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.NextLabel.Font = new System.Drawing.Font("SF Pro Display", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.NextLabel.Font = new System.Drawing.Font("Inter", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.NextLabel.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.NextLabel.Location = new System.Drawing.Point(50, 214);
+            this.NextLabel.Location = new System.Drawing.Point(54, 215);
             this.NextLabel.Name = "NextLabel";
-            this.NextLabel.Size = new System.Drawing.Size(92, 76);
+            this.NextLabel.Size = new System.Drawing.Size(101, 77);
             this.NextLabel.TabIndex = 3;
             this.NextLabel.Text = "→";
             this.NextLabel.Click += new System.EventHandler(this.NextLabel_Click);
+            this.NextLabel.MouseEnter += new System.EventHandler(this.NextLabel_MouseEnter);
+            this.NextLabel.MouseLeave += new System.EventHandler(this.NextLabel_MouseLeave);
             // 
             // Welcome
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 42F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(22F, 42F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.NextLabel);
             this.Controls.Add(this.EmojiLabel);
             this.Controls.Add(this.GreetingLabel);
             this.Controls.Add(this.WelcomeLabel);
-            this.Font = new System.Drawing.Font("SF Pro Display", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Margin = new System.Windows.Forms.Padding(8);
+            this.Font = new System.Drawing.Font("Inter Semi Bold", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Margin = new System.Windows.Forms.Padding(9);
             this.Name = "Welcome";
             this.Size = new System.Drawing.Size(800, 400);
+            this.Load += new System.EventHandler(this.Welcome_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Welcome_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();

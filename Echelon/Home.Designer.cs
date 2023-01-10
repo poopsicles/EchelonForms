@@ -40,8 +40,8 @@
             // 
             // NameLabel
             // 
-            this.NameLabel.Font = new System.Drawing.Font("SF Pro Display", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.NameLabel.Location = new System.Drawing.Point(27, 59);
+            this.NameLabel.Font = new System.Drawing.Font("Inter Semi Bold", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.NameLabel.Location = new System.Drawing.Point(27, 57);
             this.NameLabel.Name = "NameLabel";
             this.NameLabel.Size = new System.Drawing.Size(721, 66);
             this.NameLabel.TabIndex = 2;
@@ -50,8 +50,8 @@
             // 
             // GreetingLabel
             // 
-            this.GreetingLabel.Font = new System.Drawing.Font("SF Pro Display", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.GreetingLabel.Location = new System.Drawing.Point(111, 122);
+            this.GreetingLabel.Font = new System.Drawing.Font("Inter Semi Bold", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.GreetingLabel.Location = new System.Drawing.Point(111, 112);
             this.GreetingLabel.Name = "GreetingLabel";
             this.GreetingLabel.Size = new System.Drawing.Size(637, 48);
             this.GreetingLabel.TabIndex = 3;
@@ -63,9 +63,9 @@
             this.NewNoteButton.BackColor = System.Drawing.Color.DodgerBlue;
             this.NewNoteButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.NewNoteButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.NewNoteButton.Font = new System.Drawing.Font("SF Pro Display", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.NewNoteButton.Font = new System.Drawing.Font("Inter", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.NewNoteButton.ForeColor = System.Drawing.Color.White;
-            this.NewNoteButton.Location = new System.Drawing.Point(286, 270);
+            this.NewNoteButton.Location = new System.Drawing.Point(253, 268);
             this.NewNoteButton.Name = "NewNoteButton";
             this.NewNoteButton.Size = new System.Drawing.Size(237, 47);
             this.NewNoteButton.TabIndex = 4;
@@ -78,11 +78,11 @@
             this.AllNotesButton.BackColor = System.Drawing.Color.DodgerBlue;
             this.AllNotesButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.AllNotesButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.AllNotesButton.Font = new System.Drawing.Font("SF Pro Display", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.AllNotesButton.Font = new System.Drawing.Font("Inter", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.AllNotesButton.ForeColor = System.Drawing.Color.White;
-            this.AllNotesButton.Location = new System.Drawing.Point(529, 270);
+            this.AllNotesButton.Location = new System.Drawing.Point(496, 268);
             this.AllNotesButton.Name = "AllNotesButton";
-            this.AllNotesButton.Size = new System.Drawing.Size(219, 47);
+            this.AllNotesButton.Size = new System.Drawing.Size(237, 47);
             this.AllNotesButton.TabIndex = 5;
             this.AllNotesButton.Text = "Open existing notes  →";
             this.AllNotesButton.UseVisualStyleBackColor = false;
@@ -92,15 +92,17 @@
             // 
             this.LockLabel.AutoSize = true;
             this.LockLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LockLabel.Font = new System.Drawing.Font("SF Pro Display", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.LockLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.LockLabel.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.LockLabel.Location = new System.Drawing.Point(30, 36);
+            this.LockLabel.Location = new System.Drawing.Point(40, 40);
             this.LockLabel.Name = "LockLabel";
-            this.LockLabel.Size = new System.Drawing.Size(47, 32);
+            this.LockLabel.Size = new System.Drawing.Size(47, 31);
             this.LockLabel.TabIndex = 6;
             this.LockLabel.Text = "🔓";
             this.LockLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.LockLabel.Click += new System.EventHandler(this.LockLabel_Click);
+            this.LockLabel.MouseEnter += new System.EventHandler(this.LockLabel_MouseEnter);
+            this.LockLabel.MouseLeave += new System.EventHandler(this.LockLabel_MouseLeave);
             // 
             // BackgroundLockTimer
             // 
@@ -110,7 +112,7 @@
             // 
             // ManualLockTimer
             // 
-            this.ManualLockTimer.Interval = 800;
+            this.ManualLockTimer.Interval = 500;
             this.ManualLockTimer.Tick += new System.EventHandler(this.ManualLockTimer_Tick);
             // 
             // Home

@@ -12,12 +12,19 @@ namespace Echelon
 {
     public partial class Welcome : UserControl
     {
-        Form ParentContainer;
+        MainWindow ParentContainer;
 
-        public Welcome(Form MainWindow)
+        public Welcome(MainWindow Parent)
         {
-            this.ParentContainer = MainWindow;
+            this.ParentContainer = Parent;
             InitializeComponent();
+        }
+
+        private void Welcome_Load(object sender, EventArgs e)
+        {
+            WelcomeLabel.Font = new Font(ParentContainer.interCollection.Families[12], 36, FontStyle.Regular);
+            GreetingLabel.Font = new Font(ParentContainer.interCollection.Families[12], 36, FontStyle.Regular);
+            NextLabel.Font = new Font(ParentContainer.interCollection.Families[12], 36, FontStyle.Regular);
         }
 
         private void TickTimer_Tick(object sender, EventArgs e)
@@ -58,6 +65,17 @@ namespace Echelon
                 e.Handled = true;
                 MoveToOnboarding();
             }
+        }
+
+        // hover effects
+        private void NextLabel_MouseEnter(object sender, EventArgs e)
+        {
+            NextLabel.ForeColor = Color.FromArgb(24, 120, 215);
+        }
+
+        private void NextLabel_MouseLeave(object sender, EventArgs e)
+        {
+            NextLabel.ForeColor = Color.FromArgb(30, 144, 255);
         }
 
         public void MoveToOnboarding()

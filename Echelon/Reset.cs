@@ -12,13 +12,22 @@ namespace Echelon
 {
     public partial class Reset : UserControl
     {
-        Form ParentContainer;
+        MainWindow ParentContainer;
         bool confirmed = false;
 
-        public Reset(Form MainWindow)
+        public Reset(MainWindow Parent)
         {
-            this.ParentContainer = MainWindow;
+            this.ParentContainer = Parent;
             InitializeComponent();
+        }
+
+        private void Reset_Load(object sender, EventArgs e)
+        {
+            NameLabel.Font = new Font(ParentContainer.interCollection.Families[12], 36F, FontStyle.Regular);
+            NextLabel.Font = new Font(ParentContainer.interCollection.Families[12], 27.75F, FontStyle.Regular);
+            InfoLabel1.Font = new Font(ParentContainer.interCollection.Families[0], 18.75F, FontStyle.Regular);
+            InfoLabel2.Font = new Font(ParentContainer.interCollection.Families[0], 18.75F, FontStyle.Regular);
+            BackLabel.Font = new Font(ParentContainer.interCollection.Families[0], 14.25F, FontStyle.Bold);
         }
 
         private void Reset_KeyDown(object sender, KeyEventArgs e)
@@ -29,6 +38,26 @@ namespace Echelon
                 e.Handled = true;
                 MoveToWelcome();
             }
+        }
+
+        private void NextLabel_MouseEnter(object sender, EventArgs e)
+        {
+            NextLabel.ForeColor = Color.FromArgb(255, 44, 44);
+        }
+
+        private void NextLabel_MouseLeave(object sender, EventArgs e)
+        {
+            NextLabel.ForeColor = Color.FromArgb(255, 0, 0);
+        }
+
+        private void BackLabel_MouseEnter(object sender, EventArgs e)
+        {
+            BackLabel.ForeColor = Color.FromArgb(255, 44, 44);
+        }
+
+        private void BackLabel_MouseLeave(object sender, EventArgs e)
+        {
+            BackLabel.ForeColor = Color.FromArgb(255, 0, 0);
         }
 
         private void BackLabel_Click(object sender, EventArgs e)

@@ -12,16 +12,26 @@ namespace Echelon
 {
     public partial class Onboarding : UserControl
     {
-        Form ParentContainer;
+        MainWindow ParentContainer;
+
         string name = "";
         string password = "";
         bool askingPass = false;
-        int newUserID;
 
-        public Onboarding(Form MainWindow)
+        public Onboarding(MainWindow Parent)
         {
-            this.ParentContainer = MainWindow;
+            this.ParentContainer = Parent;
             InitializeComponent();
+        }
+
+        private void Onboarding_Load(object sender, EventArgs e)
+        {
+            BackLabel.Font = new Font(ParentContainer.interCollection.Families[0], 14.25F, FontStyle.Bold);
+            QuestionLabel.Font = new Font(ParentContainer.interCollection.Families[12], 36F, FontStyle.Regular);
+            inputTextbox.Font = new Font(ParentContainer.interCollection.Families[0], 24.75F, FontStyle.Regular);
+            ValidationLabel.Font = new Font(ParentContainer.interCollection.Families[0], 11.25F, FontStyle.Regular);
+            borderLabel.Font = new Font(ParentContainer.interCollection.Families[0], 36F, FontStyle.Bold);
+            NextLabel.Font = new Font(ParentContainer.interCollection.Families[0], 36F, FontStyle.Bold);
         }
 
         private void GagTimer_Tick(object sender, EventArgs e)
@@ -72,6 +82,38 @@ namespace Echelon
             }
         }
 
+        private void inputTextbox_Enter(object sender, EventArgs e)
+        {
+            // make the text black from placeholder grey
+            inputTextbox.ForeColor = Color.Black;
+            borderLabel.ForeColor = Color.FromArgb(24, 120, 215);
+        }
+
+        private void inputTextbox_Leave(object sender, EventArgs e)
+        {
+            inputTextbox.ForeColor = Color.FromArgb(30, 144, 255);
+        }
+
+        private void BackLabel_MouseEnter(object sender, EventArgs e)
+        {
+            BackLabel.ForeColor = Color.FromArgb(24, 120, 215);
+        }
+
+        private void BackLabel_MouseLeave(object sender, EventArgs e)
+        {
+            BackLabel.ForeColor = Color.FromArgb(30, 144, 255);
+        }
+
+        private void NextLabel_MouseEnter(object sender, EventArgs e)
+        {
+            NextLabel.ForeColor = Color.FromArgb(24, 120, 215);
+        }
+
+        private void NextLabel_MouseLeave(object sender, EventArgs e)
+        {
+            NextLabel.ForeColor = Color.FromArgb(30, 144, 255);
+        }
+
         public void MoveToHome()
         {
             if (String.IsNullOrEmpty(inputTextbox.Text.Trim()))
@@ -102,7 +144,7 @@ namespace Echelon
                         ValidationLabel.Visible = false;
                         password = inputTextbox.Text;
 
-                        newUserID = Services.Database.AddUser(name, password);
+                        Services.Database.AddUser(name, password);
 
                         ParentContainer.Controls.Clear();
                         ParentContainer.Controls.Add(new Login(ParentContainer));
