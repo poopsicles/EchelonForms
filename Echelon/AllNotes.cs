@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
 
 namespace Echelon
 {
@@ -18,13 +9,13 @@ namespace Echelon
         List<int> NIDs;
         MainWindow ParentContainer;
 
-        public AllNotes(int UID, byte[] PrivateKey, MainWindow Parent) 
+        public AllNotes(int UID, byte[] PrivateKey, MainWindow Parent)
         {
             this.UID = UID;
             this.PrivateKey = PrivateKey;
             this.ParentContainer = Parent;
             NIDs = new List<int>();
-            
+
             InitializeComponent();
         }
 
@@ -45,7 +36,8 @@ namespace Echelon
             {
                 TotalLabel.Text = $"{db.Notes.Where(c => c.UserID == UID).Count()} in total";
 
-                foreach (var note in db.Notes.Where(c => c.UserID == UID).OrderBy(c => c.LastModified).Reverse()) {
+                foreach (var note in db.Notes.Where(c => c.UserID == UID).OrderBy(c => c.LastModified).Reverse())
+                {
                     var title = Services.Crypto.DecryptString(Services.Crypto.DecryptBytes(PrivateKey, note.EncryptedKey), note.EncryptedTitle);
                     title = String.IsNullOrEmpty(title) ? "No title" : title;
 
@@ -70,7 +62,7 @@ namespace Echelon
         {
 
             var noteID = NIDs.ElementAt(NotesGridView.CurrentCell.RowIndex);
-            
+
             if (NotesGridView.CurrentCell.ColumnIndex.Equals(2)) // export button
             {
                 // get the contents and export
@@ -93,33 +85,37 @@ namespace Echelon
                         {
                             streamwriter.Write(fileContents);
                         }
-                        
+
                         myStream.Close();
                     }
                 }
 
                 NotesGridView.CurrentCell.Selected = false;
-            } else if (NotesGridView.CurrentCell.ColumnIndex.Equals(3)) { // delete button
+            }
+            else if (NotesGridView.CurrentCell.ColumnIndex.Equals(3))
+            { // delete button
                 // get the NID, delete, reload
 
                 Services.Database.DropNote(noteID);
 
-                if  (NIDs.Count() - 1 == 0)
+                if (NIDs.Count() - 1 == 0)
                 {
                     // exhausted all notes, back to home
                     ParentContainer.Controls.Clear();
                     ParentContainer.Controls.Add(new Home(ParentContainer, UID, PrivateKey));
-                } else
+                }
+                else
                 {
                     ParentContainer.Controls.Clear();
                     ParentContainer.Controls.Add(new AllNotes(UID, PrivateKey, ParentContainer));
                 }
-            } else // title button
+            }
+            else // title button
             {
                 // get the row index, match the NID, open
 
-               ParentContainer.Controls.Clear();
-               ParentContainer.Controls.Add(new OpenNote(UID, noteID, PrivateKey, ParentContainer));
+                ParentContainer.Controls.Clear();
+                ParentContainer.Controls.Add(new OpenNote(UID, noteID, PrivateKey, ParentContainer));
             }
         }
 

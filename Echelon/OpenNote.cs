@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Echelon
+﻿namespace Echelon
 {
     public partial class OpenNote : UserControl
     {
@@ -37,7 +27,7 @@ namespace Echelon
             string[] note_contents = Services.Database.GetNoteContents(NID, PrivateKey);
             TitleTextbox.Text = note_contents[0];
             BodyTextbox.Text = note_contents[1];
-            
+
             updateModified();
         }
 

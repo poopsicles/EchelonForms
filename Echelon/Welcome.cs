@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Echelon
+﻿namespace Echelon
 {
     public partial class Welcome : UserControl
     {
@@ -29,7 +19,7 @@ namespace Echelon
 
         private void TickTimer_Tick(object sender, EventArgs e)
         {
-        // primitive animation things
+            // primitive animation things
 
             switch (GreetingLabel.Text)
             {
@@ -57,7 +47,7 @@ namespace Echelon
 
         private void Welcome_KeyDown(object sender, KeyEventArgs e)
         {
-        // handles the user pressing "Enter" instead of clicking the button
+            // handles the user pressing "Enter" instead of clicking the button
 
             if (e.KeyCode == Keys.Enter)
             {

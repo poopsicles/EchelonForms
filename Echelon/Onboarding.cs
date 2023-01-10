@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace Echelon
+﻿namespace Echelon
 {
     public partial class Onboarding : UserControl
     {
@@ -36,7 +26,7 @@ namespace Echelon
 
         private void GagTimer_Tick(object sender, EventArgs e)
         {
-        // switches the placeholder text if the user waits long enough
+            // switches the placeholder text if the user waits long enough
 
             switch (inputTextbox.PlaceholderText)
             {

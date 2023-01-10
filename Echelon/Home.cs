@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
 
 namespace Echelon
 {
@@ -48,10 +40,12 @@ namespace Echelon
             if (now >= morning && now < noon)
             {
                 NameLabel.Text = $"Good morning, {name}";
-            } else if (now >= noon && now < evening)
+            }
+            else if (now >= noon && now < evening)
             {
                 NameLabel.Text = $"Good afternoon, {name}";
-            } else
+            }
+            else
             {
                 NameLabel.Text = $"How did your day go, {name}";
                 GreetingLabel.Text = "What are we creating tonight?";

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Echelon.Models;
+﻿using Echelon.Models;
 
 namespace Echelon.Services;
 internal class Database
@@ -132,7 +129,7 @@ internal class Database
             db.Remove(note);
             db.SaveChanges();
         }
-            
+
         return 0;
     }
 }

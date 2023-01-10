@@ -1,15 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿using Echelon.Models;
 using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml.Linq;
-using Echelon.Models;
 using System.Runtime.InteropServices;
 
 
@@ -73,8 +63,8 @@ namespace Echelon
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-        // On load, ensure the database exists and if it's new, open the Welcome splash
-        // If not, open the Login page
+            // On load, ensure the database exists and if it's new, open the Welcome splash
+            // If not, open the Login page
 
             this.Controls.Clear();
             using (var db = new DatabaseContext())
@@ -84,7 +74,8 @@ namespace Echelon
                 if (db.Users.Count() == 0)
                 {
                     this.Controls.Add(new Welcome(this));
-                } else
+                }
+                else
                 {
                     this.Controls.Add(new Login(this));
                 }
