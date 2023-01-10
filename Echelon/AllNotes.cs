@@ -68,7 +68,7 @@ namespace Echelon
                 // get the contents and export
 
                 var noteContents = Services.Database.GetNoteContents(noteID, PrivateKey);
-                string fileContents = $"# {noteContents[0]}\n\n{noteContents[1]}\n\n*Last modified: {noteContents[2]}*";
+                string fileContents = $"# {noteContents[0]}\n\n{noteContents[1]}\n\n*Last modified: {Services.Database.GetNoteDateModified(noteID)}*";
 
                 Stream myStream;
                 SaveFileDialog dialogBox = new SaveFileDialog();

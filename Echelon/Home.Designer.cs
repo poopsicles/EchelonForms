@@ -51,7 +51,7 @@
             // GreetingLabel
             // 
             this.GreetingLabel.Font = new System.Drawing.Font("Inter Semi Bold", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.GreetingLabel.Location = new System.Drawing.Point(111, 112);
+            this.GreetingLabel.Location = new System.Drawing.Point(111, 118);
             this.GreetingLabel.Name = "GreetingLabel";
             this.GreetingLabel.Size = new System.Drawing.Size(637, 48);
             this.GreetingLabel.TabIndex = 3;
