@@ -93,5 +93,5 @@ Have a look at [Deploy .NET Core apps with Visual Studio](https://docs.microsoft
 ## To-do
 
 - Tracking note changes
-  - Adding an undo capability
-  - Not overwriting the save (and date modified) if there's nothing new to save
+  - Adding an undo capability?
+  
