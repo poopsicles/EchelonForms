@@ -13,8 +13,7 @@ internal class DatabaseContext : DbContext
 
     public DatabaseContext()
     {
-        // todo: change back to %localappdata%
-        DbPath = System.IO.Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "echelon.db");
+        DbPath = System.IO.Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "echelon.db");
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
