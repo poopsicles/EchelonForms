@@ -70,17 +70,21 @@ On close, all of the keys are discarded from memory so that the passpwrd will be
 |:--:|
 | *The note as stored in the database* |
 
+| ![Viewing the notes](images/all.png) |
+|:--:|
+| *The list of all the notes stored* |
+
 ## Downloading the application
 
-Simply get the latest release from [Releases](https://github.com/poopsicles/EchelonForms/releases)
+Simply get the latest release from [Releases](https://github.com/poopsicles/EchelonForms/releases).
 
 ## Building from source
 
-1. Get the SF Pro fonts from the [Apple Developer website](https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg) and unzip with a tool like [7-Zip](https://www.7-zip.org/download.html) if you do not have a Mac at hand.
-2. Install Visual Studio 2022 with the .NET development workload selected
-3. Clone this repository with `git`
-4. Open `Echelon.sln` with Visual Studio
-5. Click the Build button
+1. Get the Inter font family from the [website](https://rsms.me/inter/).
+2. Install Visual Studio 2022 with the .NET development workload selected.
+3. Clone this repository with `git`.
+4. Open `Echelon.sln` with Visual Studio.
+5. Click the `Build` button.
 
 You can also use the `dotnet` CLI tool to build it, simply navigate into the Echelon folder and run `dotnet build`.
 
